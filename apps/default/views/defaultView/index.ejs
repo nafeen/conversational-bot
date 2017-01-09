@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title><%= title %></title>
+	<!-- BOOTSTRAP - Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	</head>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<body>
+	<style type="text/css">
+
+		@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,400,700);
+	
+		body								{
+													font-family: 'Open Sans Condensed', sans-serif, sans-serif;
+												}
+		ul 									{
+													list-style:none;
+												}
+		li 									{
+										    	overflow: hidden;
+										    }
+		.page-container 		{
+													height: 100vh;
+													background: url(./public/bg.png) no-repeat top center;
+  												background-size: cover;
+													background-color: #fafafa;
+												}
+		.profile-container	{
+													padding-left: 5%; 
+													padding-right: 5%; 
+													height: 30%;
+												}
+		.chat-container			{ 
+													padding-left: 5%; 
+													padding-right: 5%; 
+													height: 50%;
+													overflow:auto;
+												}
+		.option-container		{
+													display: none;
+													padding-left: 5%; 
+													padding-right: 5%; 
+													height: 10%;
+													background-color: green;
+													color: white;
+												}
+		.chat 							{
+													width: 100%;
+												}
+		.bot 								{ 
+													display: block;
+													float: left; 
+													margin: 0 0 1em 0;
+													padding: 6px 12px;
+													box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+													border-radius: 3px;
+													background: #fff;
+													line-height: 1.45em;
+													font-size: 19px;
+													max-width: 90%;
+													min-width: 44px;
+													min-height: 12px;
+													transition: transform 0.75s cubic-bezier(0.68, 0.01, 0.245, 1.13) 0.3s,color 0.3s ease-in-out 0.25s,min-width 0.35s ease-in-out,min-height 0.35s ease-in-out;
+												}
+		.user 							{ 
+													display: block;
+													float: right; 
+													margin: 0 0 1em 0;
+													padding: 6px 12px;
+													box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+													border-radius: 3px;
+													background: #fff;
+													line-height: 1.45em;
+													font-size: 19px;
+													max-width: 90%;
+													min-width: 44px;
+													min-height: 12px;
+													transition: transform 0.75s cubic-bezier(0.68, 0.01, 0.245, 1.13) 0.3s,color 0.3s ease-in-out 0.25s,min-width 0.35s ease-in-out,min-height 0.35s ease-in-out;
+												}
+		.card {
+		    padding-top: 20px;
+		    margin: 10px 0 20px 0;
+		    /*background-color: rgba(214, 224, 226, 0.2);*/
+		    border-top-width: 0;
+		    border-bottom-width: 2px;
+		    -webkit-border-radius: 3px;
+		    -moz-border-radius: 3px;
+		    border-radius: 3px;
+		    -webkit-box-shadow: none;
+		    -moz-box-shadow: none;
+		    box-shadow: none;
+		    -webkit-box-sizing: border-box;
+		    -moz-box-sizing: border-box;
+		    box-sizing: border-box;
+		}
+
+		.card .card-heading {
+		    padding: 0 20px;
+		    margin: 0;
+		}
+
+		.card .card-heading.simple {
+		    font-size: 20px;
+		    font-weight: 300;
+		    color: #777;
+		    border-bottom: 1px solid #e5e5e5;
+		}
+
+		.card .card-heading.image img {
+		    display: inline-block;
+		    width: 46px;
+		    height: 46px;
+		    margin-right: 15px;
+		    vertical-align: top;
+		    border: 0;
+		    -webkit-border-radius: 50%;
+		    -moz-border-radius: 50%;
+		    border-radius: 50%;
+		}
+
+		.card .card-heading.image .card-heading-header {
+		    display: inline-block;
+		    vertical-align: top;
+		}
+
+		.card .card-heading.image .card-heading-header h3 {
+		    margin: 0;
+		    font-size: 14px;
+		    line-height: 16px;
+		    color: #262626;
+		}
+
+		.card .card-heading.image .card-heading-header span {
+		    font-size: 12px;
+		    color: #999999;
+		}
+
+		.card .card-body {
+		    padding: 0 20px;
+		    margin-top: 20px;
+		}
+
+		.card .card-media {
+		    padding: 0 20px;
+		    margin: 0 -14px;
+		}
+
+		.card .card-media img {
+		    max-width: 100%;
+		    max-height: 100%;
+		}
+
+		.card .card-actions {
+		    min-height: 30px;
+		    padding: 0 20px 20px 20px;
+		    margin: 20px 0 0 0;
+		}
+
+		.card .card-comments {
+		    padding: 20px;
+		    margin: 0;
+		    background-color: #f8f8f8;
+		}
+
+		.card .card-comments .comments-collapse-toggle {
+		    padding: 0;
+		    margin: 0 20px 12px 20px;
+		}
+
+		.card .card-comments .comments-collapse-toggle a,
+		.card .card-comments .comments-collapse-toggle span {
+		    padding-right: 5px;
+		    overflow: hidden;
+		    font-size: 12px;
+		    color: #999;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		}
+
+		.card-comments .media-heading {
+		    font-size: 13px;
+		    font-weight: bold;
+		}
+
+		.card.people {
+		    position: relative;
+		    display: inline-block;
+		    width: 170px;
+		    height: 300px;
+		    padding-top: 0;
+		    margin-left: 20px;
+		    overflow: hidden;
+		    vertical-align: top;
+		}
+
+		.card.people:first-child {
+		    margin-left: 0;
+		}
+
+		.card.people .card-top {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    display: inline-block;
+		    width: 170px;
+		    height: 150px;
+		    background-color: #ffffff;
+		}
+
+		.card.people .card-top.green {
+		    background-color: #53a93f;
+		}
+
+		.card.people .card-top.blue {
+		    background-color: #427fed;
+		}
+
+		.card.people .card-info {
+		    position: absolute;
+		    top: 150px;
+		    display: inline-block;
+		    width: 100%;
+		    height: 101px;
+		    overflow: hidden;
+		    background: #ffffff;
+		    -webkit-box-sizing: border-box;
+		    -moz-box-sizing: border-box;
+		    box-sizing: border-box;
+		}
+
+		.card.people .card-info .title {
+		    display: block;
+		    margin: 8px 14px 0 14px;
+		    overflow: hidden;
+		    font-size: 16px;
+		    font-weight: bold;
+		    line-height: 18px;
+		    color: #404040;
+		}
+
+		.card.people .card-info .desc {
+		    display: block;
+		    margin: 8px 14px 0 14px;
+		    overflow: hidden;
+		    font-size: 12px;
+		    line-height: 16px;
+		    color: #737373;
+		    text-overflow: ellipsis;
+		}
+
+		.card.people .card-bottom {
+		    position: absolute;
+		    bottom: 0;
+		    left: 0;
+		    display: inline-block;
+		    width: 100%;
+		    padding: 10px 20px;
+		    line-height: 29px;
+		    text-align: center;
+		    -webkit-box-sizing: border-box;
+		    -moz-box-sizing: border-box;
+		    box-sizing: border-box;
+		}
+
+		.card.hovercard {
+		    position: relative;
+		    padding-top: 0;
+		    overflow: hidden;
+		    text-align: center;
+		    /*background-color: rgba(214, 224, 226, 0.2);*/
+		}
+
+		.card.hovercard .cardheader {
+		    /*background: url("http://lorempixel.com/850/280/nature/4/");*/
+		    background-size: cover;
+		    height: 60px;
+		}
+
+		.card.hovercard .avatar {
+		    position: relative;
+		    top: -50px;
+		    margin-bottom: -50px;
+		}
+
+		.card.hovercard .avatar img {
+		    width: 100px;
+		    height: 100px;
+		    max-width: 100px;
+		    max-height: 100px;
+		    -webkit-border-radius: 50%;
+		    -moz-border-radius: 50%;
+		    border-radius: 50%;
+		    border: 5px solid rgba(255,255,255,0.5);
+		}
+
+		.card.hovercard .info {
+		    padding: 4px 8px 10px;
+		}
+
+		.card.hovercard .info .title {
+		    margin-bottom: 4px;
+		    font-size: 24px;
+		    line-height: 1;
+		    color: #262626;
+		    vertical-align: middle;
+		}
+
+		.card.hovercard .info .desc {
+		    overflow: hidden;
+		    font-size: 16px;
+		    line-height: 20px;
+		    color: #737373;
+		    text-overflow: ellipsis;
+		}
+
+		.card.hovercard .bottom {
+		    padding: 0 20px;
+		    margin-bottom: 17px;
+		}
+
+		.btn{ border-radius: 50%; width:32px; height:32px; line-height:18px;  }
+
+	</style>
+
+	<div class='page-container container-fluid'>
+		<div id='profile-container' class='profile-container container'>
+				<div class="row">
+						<div class="col-md-12 col-xs-12">
+		            <div class="card hovercard">
+		                <div class="cardheader"></div>
+		                <div class="avatar">
+		                    <img alt="" src="./public/nafeen.jpg">
+		                </div>
+		                <div class="info">
+		                    <div class="title">
+		                        <a target="_blank" href="https://nafeen.com/">
+		                        	<b>Nafeen</b> Abdul
+		                        </a>
+		                    </div>
+		                    <div class="desc">Web Developer</div>
+		                </div>
+		                <div class="bottom">
+		                    <a class="btn btn-primary btn-twitter btn-sm" 
+		                    	target="_blank"
+		                    	href="https://twitter.com/abdulnafeen">
+		                        <i class="fa fa-twitter"></i>
+		                    </a>
+		                    <a class="btn btn-danger btn-sm" rel="publisher"
+		                    	target="_blank"
+		                    	href="https://www.linkedin.com/in/nafeen">
+		                        <i class="fa fa-linkedin"></i>
+		                    </a>
+		                    <a class="btn btn-primary btn-sm" rel="publisher"
+		                    	target="_blank"
+		                    	href="https://facebook.com/nafeen">
+		                        <i class="fa fa-facebook"></i>
+		                    </a>
+		                    <a class="btn btn-warning btn-sm" rel="publisher" 
+													target="_blank"
+		                    	href="https://github.com/nafeen">
+		                        <i class="fa fa-github"></i>
+		                    </a>
+		                </div>
+		            </div>
+		        </div>
+				</div>
+		</div>
+		<ul id='chat-container' class='chat-container'></ul>
+		<div id='option-container' class='option-container'></div>
+	</div>
+
+		
+	<script
+	  src="https://code.jquery.com/jquery-3.1.1.js"
+	  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+	  crossorigin="anonymous">
+	</script>
+
+	<!-- BOOTSTRAP - Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+
+		let data = <%- JSON.stringify(data) %>;
+
+
+		// ------------------------------------------
+
+		function addInnerDiv (level, action) {
+			let chatContainer 			= document.getElementById("chat-container");
+			let innerDiv 						= document.createElement('div');
+			let chatDiv							= document.createElement('li');
+			chatDiv.className 			= 'chat';
+			innerDiv.className 			= 'bot';
+			innerDiv.innerHTML 			= level + ' - ' + action;
+    	chatDiv.appendChild(innerDiv);
+    	chatContainer.appendChild(chatDiv);
+		}
+
+		function botStatement (level, displayData) {
+			addInnerDiv(level, 'botStatement - ' + displayData);
+		}
+
+		function checkOptions (level) {
+			addInnerDiv(level, 'checkOptions');
+    	return 1;
+		}
+
+		function optionBExists (level) {
+			addInnerDiv(level, 'optionBExists');
+    	return 1;
+		}
+
+		function optionASelected() {
+			return 1;
+		}
+
+		function optionBSelected() {
+			return 1;
+		}
+
+		function timeOut (level, timer) {
+			addInnerDiv(level, 'timeOut - ' + timer);
+		}
+
+		function showOptions (level) {
+			addInnerDiv(level, 'showOptions');
+		}
+
+		function traverseInside (level) {
+			addInnerDiv(level, 'traverseInside');
+		}
+
+		// ------------------------------------------
+
+		let lvl = 1;
+		let displayData = data.bot;
+		botStatement(lvl, displayData);
+		
+		while(checkOptions(lvl) && (lvl < 10)) {
+			if(optionBExists(lvl)) {
+				timeOut(lvl, 3000);
+				showOptions(lvl);
+				if (optionASelected()) {
+					displayData = data.optionA.response;
+				}
+				else if (optionBSelected()) {
+					displayData = data.optionB.response;
+				}
+			}
+			else {
+				timeOut(lvl, 3000);
+			}
+			lvl+=1;
+			// displayData = displayData.bot;
+			traverseInside(lvl);
+			botStatement(lvl, displayData);
+		}
+
+
+
+
+		
+		// function onPageLoad(data) {
+			
+		// 	let chatDiv 						= document.getElementById("chat-container");
+		// 	let optionDiv 					= document.getElementById("option-container");
+		// 	let innerDiv 						= document.createElement('div');
+		// 	innerDiv.innerHTML 			= data.bot;
+  //   	chatDiv.appendChild(innerDiv);
+			
+			
+		// 	function timeOut1() {
+			
+		// 		document.getElementById('option-container').style.display = 'block';
+		// 		let responseA 				= document.createElement('div');
+		// 		responseA.id 					= 'responseADiv';
+		// 		responseA.style.float = 'left';
+		// 		let responseB 				= document.createElement('div');
+		// 		responseB.id 					= 'responseBDiv';
+		// 		responseB.style.float = 'right';
+		// 		responseA.innerHTML 	= data.optionA.response;
+		// 		responseB.innerHTML 	= data.optionB.response;
+		// 		optionDiv.appendChild(responseA);
+		// 		optionDiv.appendChild(responseB);
+
+		// 		document.getElementById('responseADiv').onclick = function() {
+		// 			chatDiv.appendChild(responseA);
+		// 			document.getElementById('option-container').innerHTML = '';
+		// 			document.getElementById('option-container').style.display = 'none';
+		// 			let innerDiv 						= document.createElement('div');
+		// 			innerDiv.innerHTML 			= data.optionA.bot;
+		//     	chatDiv.appendChild(innerDiv);
+		// 		}
+
+		// 		function timeOut2() {
+			
+		// 			document.getElementById('option-container').style.display = 'block';
+		// 			let responseA 				= document.createElement('div');
+		// 			responseA.id 					= 'responseADiv';
+		// 			responseA.style.float = 'left';
+		// 			let responseB 				= document.createElement('div');
+		// 			responseB.id 					= 'responseBDiv';
+		// 			responseB.style.float = 'right';
+		// 			responseA.innerHTML 	= data.optionA.optionA.response;
+		// 			responseB.innerHTML 	= data.optionB.optionB.response;
+		// 			optionDiv.appendChild(responseA);
+		// 			optionDiv.appendChild(responseB);
+
+		// 			document.getElementById('responseADiv').onclick = function() {
+		// 				chatDiv.appendChild(responseA);
+		// 				document.getElementById('option-container').innerHTML = '';
+		// 				document.getElementById('option-container').style.display = 'none';
+		// 				let innerDiv 						= document.createElement('div');
+		// 				innerDiv.innerHTML 			= data.optionA.optionA.bot;
+		// 	    	chatDiv.appendChild(innerDiv);
+		// 			}
+				
+		// 		}
+
+		// 		setTimeout(timeOut2, 6000);
+			
+		// 	}
+
+		// 	setTimeout(timeOut1, 3000);
+
+		// }
+
+		// onPageLoad(data);
+
+
+	</script>
+</body>
+</html>

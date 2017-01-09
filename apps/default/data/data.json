@@ -1,0 +1,75 @@
+{
+	"bot": "Chelsea is the best team in the world! Don't you think so?",
+	"optionA": {
+		"response": "Totally man!",
+		"bot": "Who do you think is a better coach? Mourinho or Conte?",
+		"optionA": {
+			"response": "Mourinho is a legend!",
+			"bot": "",
+			"optionA": {
+				"response": "",
+				"bot": "",
+				"optionA": {},
+				"optionB": {}
+			},
+			"optionB": {
+				"response": "Definitely Conte! Mourinho left us for ManU!",
+				"bot": "",
+				"optionA": {},
+				"optionB": {}
+			}
+		},
+		"optionB": {
+			"response": "",
+			"bot": "",
+			"optionA": {
+				"response": "",
+				"bot": "",
+				"optionA": {},
+				"optionB": {}
+			},
+			"optionB": {
+				"response": "",
+				"bot": "",
+				"optionA": {},
+				"optionB": {}
+			}
+		}
+	},
+	"optionB" : {
+		"response": "Are you crazy? It's Man U!",
+		"bot": "",
+		"optionA": {
+			"response": "",
+			"bot": "",
+			"optionA": {
+				"response": "",
+				"bot": "",
+				"optionA": {},
+				"optionB": {}
+			},
+			"optionB": {
+				"response": "",
+				"bot": "",
+				"optionA": {},
+				"optionB": {}
+			}
+		},
+		"optionB": {
+			"response": "",
+			"bot": "",
+			"optionA": {
+				"response": "",
+				"bot": "",
+				"optionA": {},
+				"optionB": {}
+			},
+			"optionB": {
+				"response": "",
+				"bot": "",
+				"optionA": {},
+				"optionB": {}
+			}
+		}
+	}
+}

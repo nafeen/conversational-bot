@@ -4,7 +4,9 @@
   "description": "Conversational Bot",
   "main": "server.js",
   "dependencies": {
-    "express": "*"
+    "ejs": "^2.5.5",
+    "express": "*",
+    "request": "^2.79.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
